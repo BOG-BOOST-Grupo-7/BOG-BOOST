@@ -13,7 +13,7 @@
       card.innerHTML = `
         <h2>${opt.titulo}</h2>
         <p>${opt.texto}</p>
-        ${opt.esMejor ? `<span class="badge badge--best">Mejor opción (administrador)</span>` : `<span class="badge">Opción</span>`}
+        ${opt.esMejor ? `<span class="badge badge--best">opción</span>` : `<span class="badge">Opción</span>`}
       `;
       optionsContainer.appendChild(card);
     });

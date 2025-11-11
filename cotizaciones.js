@@ -3,19 +3,19 @@ window.APP_CONFIG = {
     {
       id: "op1",
       titulo: "Opción 1",
-      texto: "Cpu Torre Intel Core I5 4ta Ram 8gb Ssd 256gb Reacondiciono",
+      texto: "Disco Solido Ssd Adata Su650 Sata De 512 Gb 3dnan",
       esMejor: false
     },
     {
       id: "op2",
       titulo: "Opción 2",
-      texto: "Cpu Torre Intel Core I7 6ta Gen Ram 8gb Disco 500gb 8 Gb",
+      texto: "SSD NVMe PCIe (unidad de estado sólido). Capacidad típica: 512 GB",
       esMejor: true // Marque solo una como la mejor
     },
     {
       id: "op3",
       titulo: "Opción 3",
-      texto: "Gabinete Xtech Atx Micro Atx Kit Teclado Mouse Y Bocinas",
+      texto: "Disco Solido Ssd Adata 256gb Su650 520/450mbps 3d Nand 2.5",
       esMejor: false
     }
   ]
