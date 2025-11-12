@@ -1,21 +1,386 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cotizaciones</title>
-  <link rel="stylesheet" href="cotizaciones.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparador de Cotizaciones</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f5f7fb;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: rgb(0, 0, 0);
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: rgb(0, 0, 0);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: darkorange;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #000000;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .modal h2 {
+      color: darkorange;
+      margin-top: 0;
+    }
+
+    .options div {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      transition: background 0.3s;
+    }
+
+    .highlight {
+      background-color: #c8e6c9 !important;
+      font-weight: bold;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .btn-small {
+      flex: 1;
+      margin: 0 5px;
+      padding: 8px;
+      font-size: 0.9em;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      color: white;
+    }
+
+    .btn-barato {
+      background-color: #4caf50;
+    }
+
+    .btn-caro {
+      background-color: #f44336;
+    }
+
+    .btn-cerrar {
+      background-color: #555;
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
-  <main class="container">
-    <h1>Disco solido</h1>
+  <h1>Cotizaciones</h1>
 
-    <section id="options" class="options"></section>
+  <!-- Contenedor principal -->
+  <div class="grid" id="contenedorProductos"></div>
 
-    <button id="bestBtn" class="btn">Dame la mejor opción</button>
-  </main>
-  <button id= "volverbtn" class= "bton" onclick="window.history.back()">Volver</button>
-  <script src="cotizaciones.js"></script>
-  <script src="app.js"></script>
+  <!-- Modal para ver cotizaciones -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2 id="modalTitulo">Producto</h2>
+      <div id="opciones" class="options"></div>
+
+      <div class="buttons">
+        <button class="btn-small btn-barato" id="btnBarato">Menor precio</button>
+        <button class="btn-small btn-caro" id="btnCaro">Mayor precio</button>
+      </div>
+      <button class="btn-small btn-cerrar" id="btnCerrar">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+    // Datos de ejemplo
+    const productos = [
+      {
+        nombre: "Torre Administrador",
+        cotizaciones: [
+          { empresa: "Cpu Torre Intel Core I5 4ta Ram 8gb Ssd 256gb Reacondiciono", precio: 415000 },
+          { empresa: "Cpu Torre Intel Core I7 6ta Gen Ram 8gb Disco 500gb 8 Gb", precio: 650000 },
+          { empresa: "Gabinete Xtech Atx Micro Atx Kit Teclado Mouse Y Bocinas", precio: 445000 }
+        ]
+      },
+      {
+        nombre: "Monitor Administrador",
+        cotizaciones: [
+          { empresa: "Monitor ASUS 23.8 Pulgadas VA249HG FHD Plano Negro", precio: 900000 },
+          { empresa: "Xiaomi Monitor A27i", precio: 550000 },
+          { empresa: "Monitor LG 2145 FHD FreeSync 100Hz 5ms Negro", precio: 600000 }
+        ]
+      },
+      {
+        nombre: "Disco Sólido Administrador",
+        cotizaciones: [
+          { empresa: "Disco Solido Ssd Adata Su650 Sata De 512 Gb 3dnan", precio: 150000 },
+          { empresa: "SSD NVMe PCIe (unidad de estado sólido) 512 GB", precio: 0 },
+          { empresa: "Disco Solido Ssd Adata 256gb Su650 520/450mbps 3d Nand 2.5", precio: 94000 }
+        ]
+      },
+      {
+        nombre: "Disco Duro Interno Administrador",
+        cotizaciones: [
+          { empresa: "Disco sólido SSD interno Kingston SA400S37/240GB Negro", precio: 102000 },
+          { empresa: "Sandisk SSD SDSSDA-1T00-G27 1TB", precio: 310000 },
+          { empresa: "Disco Sólido Ssd Interno 1tb Teamgroup Ax2 - Sata Iii Laptop Color Naranja", precio: 265000 }
+        ]
+      },
+      {
+        nombre: "Servidor Administrador",
+        cotizaciones: [
+          { empresa: "Servidor Dell PowerEdge T160", precio: 7490000 },
+          { empresa: "Servidor Lenovo Thinksystem St45 V3 Amd Epyc 16gb 2tb Nuevo 2 Tb 16 Gb Amd Radeon Integrada", precio: 4760000 },
+          { empresa: "Servidor Lenovo ThinkSystem ST45 V3", precio: 6900000 }
+        ]
+      },
+      {
+        nombre: "RAM Administrador",
+        cotizaciones: [
+          { empresa: "16 RAM Capacidad: 16 gigabytes", precio: 0 },
+          { empresa: "Memoria DDR4 16 GB 3200 MHz Crucial", precio: 150000 },
+          { empresa: "Memoria RAM Timetec DDR4 16 GB 2666 MHz UDIMM", precio: 155000 }
+        ]
+      },
+      {
+        nombre: "Procesador Administrador",
+        cotizaciones: [
+          { empresa: "Procesador Amd Ryzen 5 8500g Radeon (6c/12t)", precio: 632000 },
+          { empresa: "Procesador AMD Ryzen 5 5600T 4.5Ghz", precio: 566000 },
+          { empresa: "Intel Core i5‑1135G7 (11ª gen) 4 núcleos físicos + 8 hilos", precio: 0 }
+        ]
+      },
+      {
+        nombre: "Teclado Administrador",
+        cotizaciones: [
+          { empresa: "Teclado Trust Primo Teclas Silenciosas Y Resistente Líquidos", precio: 0 },
+          { empresa: "Teclado KALLEY Alámbrico Gaming K-KGT", precio: 100000 },
+          { empresa: "Teclado Alfanumérico USB Steren", precio: 44000 }
+        ]
+      },
+      {
+        nombre: "Mouse Administrador",
+        cotizaciones: [
+          { empresa: "Mouse Inalámbrica mediante receptor USB 2.4 GHz Sensor: Óptico “BlueEye”.", precio: 0 },
+          { empresa: "Mouse gaming alámbrico Ghostgrip RGB negro", precio: 70000 },
+          { empresa: "Mouse Gamer PC USB 7 Botones 4800 DPI RGB", precio: 60000 }
+        ]
+      },
+      {
+        nombre: "Portátil Usuario",
+        cotizaciones: [
+          { empresa: "ThinkBook 16 7ma Gen - Arctic Grey, Procesador AMD Ryzen™ 5 7535HS (3,30 GHz hasta 4,55 GHz)", precio: 5945000 },
+          { empresa: "Portátil ASUS Vivobook Go 15 E1504GA-NJ092W Intel® Core™ i3-N305 (6MB Caché, 8 Núcleos y 8 Subprocesos)", precio: 1900000 },
+          { empresa: "Portatil Asus Ryzen 3 7320U 8Gb Ram 512Gb Ssd 15.6 Fhd E1504fa Nj1961 AMD Ryzen 3", precio: 1600000 }
+        ]
+      },
+      {
+      nombre: "Disco Mecánico Usuario",
+        cotizaciones: [
+          { empresa: "SP Armor A30 HDD 1TB/ USB 3.2 Gen 1/ compatibilidad multiplataforma/ A prueba de golpes de grado militar", precio: 280000 },
+          { empresa: "Disco Duro Mecánico Iii Con Interfaz De Disco Duro Mecánico", precio: 132000 },
+          { empresa: "DISCO DURO DE 500GB WESTER DIGITAL SEAGATE PULL DVR PC", precio: 130000 }
+        ]
+      },
+      {
+        nombre: "Servidor Usuario",
+        cotizaciones: [
+          { empresa: "Servidor Dell Poweredge 2650 730 Gb 12 Gb N/a (Usado)", precio: 340000 },
+          { empresa: "Dell 480GB SSD SATA Read Intensive 6Gbps", precio: 1935000 },
+          { empresa: "Cpu Dell Optiplex 5090 Core I5 10ma Gen 8gb 512gb Open Box", precio: 2855000 }
+        ]
+      },
+      {
+        nombre: "RAM Usuario",
+        cotizaciones: [
+          { empresa: "Memoria Ram Ddr3 2gb 1333mhz Skyd", precio: 25000 },
+          { empresa: "Memoria Ram Adata Para Portatil 8gb 3200mhz", precio: 157000 },
+          { empresa: "MEMORIA RAM Attech DDR4 16 GB 2666 MHz SODIMM para portátil", precio: 238000 }
+        ]
+      },
+      {
+        nombre: "Procesador Usuario",
+        cotizaciones: [
+          { empresa: "Procesador Amd Ryzen 5 8500g Radeon (6c/12t)", precio: 753000 },
+          { empresa: "Procesador AMD Ryzen 5 5600T 4.5Ghz", precio: 674000 },
+          { empresa: "Procesador Intel Core I5 12400f 2,5-18m-6 Cor Xii Generación No Video", precio: 610000 }
+        ]
+      },
+      {
+      nombre: "Teclado Usuario",
+        cotizaciones: [
+          { empresa: "Base Teclado Inalámbrico Bluetooth Y Wirelees Mouse Táctil", precio: 70000 },
+          { empresa: "Teclado Inalámbrico HP 350 Compacto Multi-device", precio: 150000 },
+          { empresa: "Teclado ESENSES Básico USB", precio: 38000 }
+        ]
+      },
+      {
+      nombre: "Mouse Usuario",
+        cotizaciones: [
+          { empresa: "Mouse Inalámbrico GENIUS NX-8006S - Negro, Silencioso y Compatible", precio: 35000 },
+          { empresa: "Mouse Inalámbrico Maxell Usb-c 800/1600 Dpi Color Negro", precio: 53000 },
+          { empresa: "Mouse HP Bluetooth", precio: 80000 }
+        ]
+      },
+      {
+      nombre: "Licencia de Software",
+        cotizaciones: [
+          { empresa: "Microsoft Windows 11 Profesional a 64 Bits Oem FQC-10552", precio: 460000 },
+          { empresa: "Windows 11 Home OEM", precio: 0 },
+          { empresa: "Windows 2021 Pro Plus", precio: 85000 }
+        ]
+      },
+      {
+      nombre: "Licencia de Visual Studio",
+        cotizaciones: [
+          { empresa: "Visual Studio Estándar Professional", precio: 5495000 },
+          { empresa: "Microsoft Visual Studio Code", precio: 0 },
+          { empresa: "Licencia Visual Studio 2022", precio: 560000 }
+        ]
+      },
+      {
+      nombre: "Licencia de Windows",
+        cotizaciones: [
+          { empresa: "Licencia Windows 11 Pro ESD Vitalicia", precio: 787000 },
+          { empresa: "Licencia Windows 11 Single Language", precio: 0 },
+          { empresa: "Windows 11 home", precio: 537000 }
+        ]
+      },
+      {
+      nombre: "Licencia de Software",
+        cotizaciones: [
+          { empresa: "SQL Server 2019", precio: 146000 },
+          { empresa: "SQL Server Express", precio: 0 },
+          { empresa: "Licencia SQL Server 2019 Standard Online", precio: 220000 }
+        ]
+      }
+    ];
+
+    // Crear las tarjetas
+    const contenedor = document.getElementById("contenedorProductos");
+    for (let i = 0; i < 20; i++) {
+      const prod = productos[i % productos.length];
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <h3>${prod.nombre}</h3>
+        <button class="btn" onclick="verCotizaciones(${i % productos.length})">Ver cotizaciones</button>
+      `;
+      contenedor.appendChild(card);
+    }
+
+    // Variables globales
+    const modal = document.getElementById("modal");
+    const opcionesDiv = document.getElementById("opciones");
+    const titulo = document.getElementById("modalTitulo");
+    const btnCerrar = document.getElementById("btnCerrar");
+
+    let cotizacionesActuales = [];
+
+    // Mostrar cotizaciones del producto seleccionado
+    function verCotizaciones(indice) {
+      const producto = productos[indice];
+      titulo.textContent = producto.nombre;
+      cotizacionesActuales = producto.cotizaciones;
+      mostrarOpciones(cotizacionesActuales);
+      modal.style.display = "flex";
+    }
+
+    function mostrarOpciones(lista) {
+      opcionesDiv.innerHTML = "";
+      lista.forEach(cot => {
+        const div = document.createElement("div");
+        div.dataset.precio = cot.precio; // guardamos el valor real sin formato
+        div.textContent = `${cot.empresa} — $${cot.precio.toLocaleString("es-CO")}`;
+        opcionesDiv.appendChild(div);
+      });
+    }
+
+    document.getElementById("btnBarato").onclick = () => {
+      const min = Math.min(...cotizacionesActuales.map(c => c.precio));
+      resaltarPrecio(min);
+    };
+
+    document.getElementById("btnCaro").onclick = () => {
+      const max = Math.max(...cotizacionesActuales.map(c => c.precio));
+      resaltarPrecio(max);
+    };
+
+    function resaltarPrecio(valor) {
+      const divs = opcionesDiv.querySelectorAll("div");
+      divs.forEach(div => {
+        div.classList.remove("highlight");
+        if (parseFloat(div.dataset.precio) === valor) {
+          div.classList.add("highlight");
+        }
+      });
+    }
+
+    btnCerrar.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+  </script>
 </body>
 </html>
