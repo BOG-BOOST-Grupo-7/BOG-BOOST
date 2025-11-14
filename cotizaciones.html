@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comparador de Cotizaciones</title>
+  <title>Cotizaciones</title>
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -126,6 +126,10 @@
       background-color: #f44336;
     }
 
+    .btn-recomendado {
+      background-color: #ff9800;
+    }
+
     .btn-cerrar {
       background-color: #555;
       margin-top: 10px;
@@ -149,13 +153,13 @@
       <div class="buttons">
         <button class="btn-small btn-barato" id="btnBarato">Menor precio</button>
         <button class="btn-small btn-caro" id="btnCaro">Mayor precio</button>
+        <button class="btn-small btn-recomendado" id="btnRecomendado">Recomendado</button>
       </div>
       <button class="btn-small btn-cerrar" id="btnCerrar">Cerrar</button>
     </div>
   </div>
 
   <script>
-    // Datos de ejemplo
     const productos = [
       {
         nombre: "Torre Administrador",
@@ -210,7 +214,7 @@
         cotizaciones: [
           { empresa: "Procesador Amd Ryzen 5 8500g Radeon (6c/12t)", precio: 632000 },
           { empresa: "Procesador AMD Ryzen 5 5600T 4.5Ghz", precio: 566000 },
-          { empresa: "Intel Core i5‑1135G7 (11ª gen) 4 núcleos físicos + 8 hilos", precio: 0 }
+          { empresa: "Intel Core i5-1135G7 (11ª gen) 4 núcleos físicos + 8 hilos", precio: 0 }
         ]
       },
       {
@@ -310,7 +314,7 @@
         ]
       },
       {
-      nombre: "Licencia de Software",
+      nombre: "Licencia de SQL",
         cotizaciones: [
           { empresa: "SQL Server 2019", precio: 146000 },
           { empresa: "SQL Server Express", precio: 0 },
@@ -331,6 +335,30 @@
       `;
       contenedor.appendChild(card);
     }
+
+    // Índice del recomendado para cada producto (0, 1 o 2 según la posición en su arreglo)
+    const recomendados = {
+      "Torre Administrador": 1,
+      "Monitor Administrador": 1,
+      "Disco Sólido Administrador": 1,
+      "Disco Duro Interno Administrador": 2,
+      "Servidor Administrador": 0,
+      "RAM Administrador": 0,
+      "Procesador Administrador": 2,
+      "Teclado Administrador": 0,
+      "Mouse Administrador": 0,
+      "Portátil Usuario": 2,
+      "Disco Mecánico Usuario": 1,
+      "Servidor Usuario": 0,
+      "RAM Usuario": 2,
+      "Procesador Usuario": 2,
+      "Teclado Usuario": 2,
+      "Mouse Usuario": 0,
+      "Licencia de Software": 1,
+      "Licencia de Visual Studio": 1,
+      "Licencia de Windows": 1,
+      "Licencia de SQL": 1
+    };
 
     // Variables globales
     const modal = document.getElementById("modal");
@@ -367,6 +395,17 @@
     document.getElementById("btnCaro").onclick = () => {
       const max = Math.max(...cotizacionesActuales.map(c => c.precio));
       resaltarPrecio(max);
+    };
+
+    document.getElementById("btnRecomendado").onclick = () => {
+      const nombreProducto = titulo.textContent;
+      const indice = recomendados[nombreProducto];
+      if (indice !== undefined && cotizacionesActuales[indice]) {
+        const valor = cotizacionesActuales[indice].precio;
+        resaltarPrecio(valor);
+      } else {
+        alert("No hay recomendación registrada para este producto.");
+      }
     };
 
     function resaltarPrecio(valor) {
