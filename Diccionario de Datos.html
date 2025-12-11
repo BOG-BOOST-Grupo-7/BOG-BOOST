@@ -32,7 +32,7 @@
         background-color: #F2F2F2;
     }
     th{
-        background-color: silver;
+        background-color: rgb(255, 193, 77);
     }
     td{
         color: gray;
@@ -53,7 +53,7 @@
 <div id="title-sect">
 <h1>Base de Datos<br> Data Dictionay</h1>
 <p>
-<em>2025-11-25</em>
+<em>2025-12-11</em>
 </p>
 <p class="proj-desc">
 <em></em>
@@ -61,91 +61,22 @@
 </div>
 <h2>Alphabetic Index</h2>
 <ul>
-<li><a href='#Carrito_compras'>Carrito_compras</a></li>
 <li><a href='#Categorias'>Categorias</a></li>
 <li><a href='#Comentarios'>Comentarios</a></li>
 <li><a href='#Detalle_Ventas'>Detalle_Ventas</a></li>
+<li><a href='#Medios_pago'>Medios_pago</a></li>
+<li><a href='#Metodos_envio'>Metodos_envio</a></li>
 <li><a href='#Movimientos_Stock'>Movimientos_Stock</a></li>
 <li><a href='#Negocios'>Negocios</a></li>
+<li><a href='#Notificaciones'>Notificaciones</a></li>
 <li><a href='#PQRS'>PQRS</a></li>
+<li><a href='#Pedidos'>Pedidos</a></li>
 <li><a href='#Productos'>Productos</a></li>
+<li><a href='#Puestos'>Puestos</a></li>
 <li><a href='#Roles'>Roles</a></li>
 <li><a href='#Usuarios'>Usuarios</a></li>
 <li><a href='#Ventas'>Ventas</a></li>
 </ul>
-<table id='Carrito_compras'>
-<caption>Carrito_compras</caption>
-<tr><td colspan='11'></td></tr>
-<tr>
-    <th>Column name</th>
-    <th>DataType</th>
-    <th><abbr title='Primary Key'>PK</abbr></th>
-    <th><abbr title='Foreign Key'>FK</abbr></th>
-    <th><abbr title='Not Null'>NN</abbr></th>
-    <th><abbr title='Unique'>UQ</abbr></th>
-    <th><abbr title='Binary'>BIN</abbr></th>
-    <th><abbr title='Unsigned'>UN</abbr></th>
-    <th><abbr title='Zero Fill'>ZF</abbr></th>
-    <th><abbr title='Auto Increment'>AI</abbr></th>
-    <th>Default</th>
-    <th>Comment</th>
-</tr>
-<tr>
-    <td>id_carrito</td>
-    <td>INT</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td></td>
-    <td>Identificador unico del carrito de compras</td>
-</tr>
-<tr>
-    <td>id_usuario</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td>Usuario al que pertenece el carrito (Foranea de la tabla usuarios)</td>
-</tr>
-<tr>
-    <td>id_producto</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td>Productos agregados al carrito (Foranea de la tabla productos)</td>
-</tr>
-<tr>
-    <td>cantidad</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td>Cantidad seleccionada del producto</td>
-</tr>
 <table id='Categorias'>
 <caption>Categorias</caption>
 <tr><td colspan='11'></td></tr>
@@ -169,7 +100,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -214,7 +145,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -234,7 +165,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td>Usuario que realizo el comentario (Foranea de la tabla usuarios)</td>
+    <td>Usuario que hizo el comentario (Foranea de la tabla usuarios)</td>
 </tr>
 <tr>
     <td>id_producto</td>
@@ -315,7 +246,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -393,6 +324,180 @@
     <td></td>
     <td>Subtotal del valor de la venta</td>
 </tr>
+<table id='Medios_pago'>
+<caption>Medios_pago</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Foreign Key'>FK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>id_medio_pago</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td>Identificador unico del medio de pago</td>
+</tr>
+<tr>
+    <td>id_negocio</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Negocio al que corresponde el medio de pago (Foranea de la tabla negocios)</td>
+</tr>
+<tr>
+    <td>nombre_medio</td>
+    <td>VARCHAR(20)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Nombre del medio de pago</td>
+</tr>
+<tr>
+    <td>numero_medio</td>
+    <td>VARCHAR(20)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Numero del medio de pago</td>
+</tr>
+<tr>
+    <td>llave_medio</td>
+    <td>VARCHAR(20)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Llave del medio de pago</td>
+</tr>
+<table id='Metodos_envio'>
+<caption>Metodos_envio</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Foreign Key'>FK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>id_metodo_envio</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td>Identificador unico del metodo de envio</td>
+</tr>
+<tr>
+    <td>id_negocio</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Negocio al que corresponde el metodo de envio (Foranea de la tabla negocios)</td>
+</tr>
+<tr>
+    <td>nombre_metodo</td>
+    <td>VARCHAR(50)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Nombre del metodo de envio</td>
+</tr>
+<tr>
+    <td>descripcion_metodo</td>
+    <td>VARCHAR(100)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td>NULL</td>
+    <td>Descripcion o informacion relevante del metodo de pago</td>
+</tr>
+<tr>
+    <td>costo_envio</td>
+    <td>DECIMAL</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Costo del metodo de pago</td>
+</tr>
 <table id='Movimientos_Stock'>
 <caption>Movimientos_Stock</caption>
 <tr><td colspan='11'></td></tr>
@@ -416,7 +521,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -436,7 +541,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td>Producto al cual se le hace la modificacion del stock (Foranea de la tabla productos)</td>
+    <td>Producto del cual se modifico el stock (Foranea de la tabla productos)</td>
 </tr>
 <tr>
     <td>fecha_movimiento</td>
@@ -453,7 +558,7 @@
     <td>Fecha en la que se hizo el movimiento</td>
 </tr>
 <tr>
-    <td>movimiento</td>
+    <td>tipo_movimiento</td>
     <td>VARCHAR(20)</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -517,7 +622,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -537,7 +642,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td>Usuario dueno del negocio (Foranea de la tabla usuarios)</td>
+    <td>Usuario al que pertenece el negocio (Foranea de la tabla usuarios)</td>
 </tr>
 <tr>
     <td>nombre_negocio</td>
@@ -568,20 +673,6 @@
     <td>Descripcion del negocio</td>
 </tr>
 <tr>
-    <td>ubicacion</td>
-    <td>VARCHAR(20)</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td>Ubicacion del puesto del negocio</td>
-</tr>
-<tr>
     <td>telefono_negocio</td>
     <td>VARCHAR(20)</td>
     <td>&nbsp;</td>
@@ -609,6 +700,121 @@
     <td></td>
     <td>Logo del negocio</td>
 </tr>
+<tr>
+    <td>estado_negocio</td>
+    <td>VARCHAR(20)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Estado del negocio (Aprobado, Rechazado)</td>
+</tr>
+<table id='Notificaciones'>
+<caption>Notificaciones</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Foreign Key'>FK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>id_notificacion</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td>Identificador unico de la notificacion</td>
+</tr>
+<tr>
+    <td>id_usuario</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Usuario al que pertenece la notificacion (Foranea de la tabla usuarios)</td>
+</tr>
+<tr>
+    <td>mensaje</td>
+    <td>VARCHAR(200)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Mensaje o contenido de la notificacion</td>
+</tr>
+<tr>
+    <td>tipo</td>
+    <td>VARCHAR(20)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td>NULL</td>
+    <td>Tipo de notificacion (Pedido, Venta, PQRS, entre otros)</td>
+</tr>
+<tr>
+    <td>fecha_notificacion</td>
+    <td>DATETIME</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td>CURRENT_TIMESTAMP</td>
+    <td>Fecha en la que se recibio la notificacion</td>
+</tr>
+<tr>
+    <td>estado_notificacion</td>
+    <td>TINYINT</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td>0</td>
+    <td>Estado de la notificacion (Leida, No Leida)</td>
+</tr>
 <table id='PQRS'>
 <caption>PQRS</caption>
 <tr><td colspan='11'></td></tr>
@@ -632,7 +838,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -652,7 +858,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td>Usuario que envia el PQRS (Foranea de la tabla usuarios)</td>
+    <td>Usuario que envio el PQRS (Foranea de la tabla usuarios)</td>
 </tr>
 <tr>
     <td>fecha_PQRS</td>
@@ -666,10 +872,10 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td>CURRENT_TIMESTAMP</td>
-    <td>Fecha en la que se envio el PQRS</td>
+    <td>Fecha en la que el usuario envio el PQRS</td>
 </tr>
 <tr>
-    <td>mensaje</td>
+    <td>mensaje_PQRS</td>
     <td>VARCHAR(500)</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -683,7 +889,7 @@
     <td>Mensaje que envio el usuario</td>
 </tr>
 <tr>
-    <td>respuesta</td>
+    <td>respuesta_PQRS</td>
     <td>VARCHAR(500)</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -695,6 +901,93 @@
     <td class='attr'>&nbsp;</td>
     <td></td>
     <td>Respuesta dada por el administrador</td>
+</tr>
+<table id='Pedidos'>
+<caption>Pedidos</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Foreign Key'>FK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>id_pedido</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td>Identificador unico del pedido</td>
+</tr>
+<tr>
+    <td>id_venta</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Venta a la que corresponde el pedido (Foranea de la tabla ventas)</td>
+</tr>
+<tr>
+    <td>estado_pedido</td>
+    <td>VARCHAR(20)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Estado del pedido (Entregado, Enviado)</td>
+</tr>
+<tr>
+    <td>fecha_envio</td>
+    <td>DATETIME</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td>CURRENT_TIMESTAMP</td>
+    <td>Fecha en la que se envio el pedido</td>
+</tr>
+<tr>
+    <td>fecha_entrega</td>
+    <td>DATETIME</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td>CURRENT_TIMESTAMP</td>
+    <td>Fecha en la que se entrego el pedido</td>
 </tr>
 <table id='Productos'>
 <caption>Productos</caption>
@@ -719,7 +1012,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -826,7 +1119,7 @@
     <td>Precio unitario del producto</td>
 </tr>
 <tr>
-    <td>estado</td>
+    <td>estado_producto</td>
     <td>VARCHAR(20)</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -853,6 +1146,79 @@
     <td></td>
     <td>Imagen del producto</td>
 </tr>
+<table id='Puestos'>
+<caption>Puestos</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Foreign Key'>FK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>id_puesto</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Identificador unico del puesto (Numero de puesto)</td>
+</tr>
+<tr>
+    <td>id_negocio</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Negocio al que corresponde el puesto (Foranea de la tabla negocios)</td>
+</tr>
+<tr>
+    <td>coordenada_x</td>
+    <td>FLOAT</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Coordenada x del puesto</td>
+</tr>
+<tr>
+    <td>coordenada_y</td>
+    <td>FLOAT</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Coordenada y del puesto</td>
+</tr>
 <table id='Roles'>
 <caption>Roles</caption>
 <tr><td colspan='11'></td></tr>
@@ -876,7 +1242,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -921,7 +1287,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -941,7 +1307,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td>Rol que identifica al usuario (Foranea de la tabla usuarios)</td>
+    <td>Rol que tiene el usuario (Foranea de la tabla roles)</td>
 </tr>
 <tr>
     <td>nombre</td>
@@ -1008,7 +1374,7 @@
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
-    <td>&nbsp;</td>
+    <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -1042,7 +1408,35 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td>Negocio del cual se hizo la venta (Foranea de la tabla negocios)</td>
+    <td>Negocio al que se le hizo la venta (Foranea de la tabla negocios)</td>
+</tr>
+<tr>
+    <td>id_medio_pago</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Medio de pago seleccionado por el usuario (Foranea de la tabla medios de pago)</td>
+</tr>
+<tr>
+    <td>id_metodo_envio</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Metodo de envio que selecciono el usuario (Foranea de la tabla metodos de envio)</td>
 </tr>
 <tr>
     <td>telefono</td>
@@ -1071,20 +1465,6 @@
     <td class='attr'>&nbsp;</td>
     <td></td>
     <td>Direccion de vivienda del usuario</td>
-</tr>
-<tr>
-    <td>metodo_pago</td>
-    <td>VARCHAR(20)</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td>Metodo de pago utilizado para la compra</td>
 </tr>
 <tr>
     <td>fecha_venta</td>
